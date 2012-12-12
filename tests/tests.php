@@ -557,7 +557,7 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       $this->fail('Should not get here.');
     } catch(FacebookApiException $e) {
       // means the server got the access token and didn't like it
-      $msg = 'OAuthException: Invalid OAuth access token.';
+      $msg = 'OAuthException: 190: Invalid OAuth access token.';
       $this->assertEquals($msg, (string) $e,
                           'Expect the invalid OAuth token message.');
     }
@@ -575,7 +575,7 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       $this->fail('Should not get here.');
     } catch(FacebookApiException $e) {
       // means the server got the access token and didn't like it
-      $error_msg_start = 'OAuthException: Error validating access token:';
+      $error_msg_start = 'OAuthException: 190: Error validating access token:';
       $this->assertTrue(strpos((string) $e, $error_msg_start) === 0,
                         'Expect the token validation error message.');
     }
