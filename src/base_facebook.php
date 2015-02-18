@@ -128,6 +128,16 @@ class FacebookApiException extends Exception
   }
 
   /**
+   * Returns an error_user_msg
+   *
+   * @return string
+   */
+  public function getUserMessage()
+  {
+    return $this->get('error_user_msg', '');
+  }
+
+  /**
    * Checks isset and returns that or a default value.
    *
    * @param string $key

@@ -1433,6 +1433,18 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
       $this->assertEquals($subCode, $e->getSubErrorCode());
   }
 
+  public function testExceptionGetUserMessage() {
+      $userMessage = 'hello user';
+      $e = new FacebookApiException(array(
+          'error' => array(
+              'code' => 2,
+              'message' => 'hello',
+              'error_user_msg' => $userMessage,
+          )
+      ));
+      $this->assertEquals($userMessage, $e->getUserMessage());
+  }
+
   public function testDestroyClearsCookie() {
     $fb = new FBPublicCookie(array(
       'appId'  => self::APP_ID,
