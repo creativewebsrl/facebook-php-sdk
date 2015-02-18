@@ -110,6 +110,30 @@ class FacebookApiException extends Exception
     }
     return $str . $this->message;
   }
+
+  /**
+   * @return integer
+   */
+  public function getSubErrorCode()
+  {
+    return (int) $this->get('error_subcode', -1);
+  }
+
+  /**
+   * Checks isset and returns that or a default value.
+   *
+   * @param string $key
+   * @param mixed $default
+   *
+   * @return mixed
+   */
+  private function get($key, $default = null)
+  {
+    if (isset($this->result['error'][$key])) {
+      return $this->result['error'][$key];
+    }
+    return $default;
+  }
 }
 
 /**

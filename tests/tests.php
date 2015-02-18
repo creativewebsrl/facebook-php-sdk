@@ -1400,6 +1400,28 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
     $this->assertEquals('Exception: 1: foo', (string) $e);
   }
 
+  public function testExceptionGetSubErrorCodeDefaults() {
+      $e = new FacebookApiException(array(
+          'error' => array(
+              'code' => 2,
+              'message' => 'hello',
+          )
+      ));
+      $this->assertEquals(-1, $e->getSubErrorCode());
+  }
+
+  public function testExceptionGetSubErrorCode() {
+      $subCode = 100;
+      $e = new FacebookApiException(array(
+        'error' => array(
+          'code' => 2,
+          'message' => 'hello',
+          'error_subcode' => $subCode,
+        )
+      ));
+      $this->assertEquals($subCode, $e->getSubErrorCode());
+  }
+
   public function testDestroyClearsCookie() {
     $fb = new FBPublicCookie(array(
       'appId'  => self::APP_ID,
