@@ -1400,6 +1400,17 @@ class PHPSDKTestCase extends PHPUnit_Framework_TestCase {
     $this->assertEquals('Exception: 1: foo', (string) $e);
   }
 
+  public function testExceptionIsTransient() {
+      $e = new FacebookApiException(array(
+          'error' => array(
+            'code' => 1,
+            'message' => 'foo',
+            'is_transient' => true,
+          )
+      ));
+      $this->assertTrue($e->isTransient());
+  }
+
   public function testExceptionGetSubErrorCodeDefaults() {
       $e = new FacebookApiException(array(
           'error' => array(

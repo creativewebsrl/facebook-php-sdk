@@ -120,6 +120,14 @@ class FacebookApiException extends Exception
   }
 
   /**
+   * @return boolean
+   */
+  public function isTransient()
+  {
+    return $this->get('is_transient', false);
+  }
+
+  /**
    * Checks isset and returns that or a default value.
    *
    * @param string $key
